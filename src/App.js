@@ -1,21 +1,26 @@
+import useQuery from "./useQuery";
+import { useState } from "react";
+import axios from "axios";
 import "./App.css";
-import useRandomColor from "./useRandomColor";
 
 function App() {
-  const { color, changeColor } = useRandomColor();
+  const [quote, setQuote] = useState("");
+  const getQuote = () => {
+    axios
+      .get("https://api.quotable.io/random")
+      .then((res) => {
+        setQuote(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
-    <div
-      className="App"
-      style={{ width: "100vw", height: "100vh", background: "#" + color }}
-    >
-      <button
-        type="button"
-        onClick={() => {
-          changeColor();
-        }}
-      >
-        Click To Change background Color
-      </button>
+    <div>
+      <div>
+        <button onClick={getQuote}> click to get a Quote </button>
+        <h1>{quote}</h1>
+      </div>
     </div>
   );
 }

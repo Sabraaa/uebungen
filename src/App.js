@@ -1,26 +1,28 @@
-import useQuery from "./useQuery";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [quote, setQuote] = useState("");
-  const getQuote = () => {
+ const [data, setData]=useState('')
+  useEffect(() => {
     axios
-      .get("https://api.quotable.io/random")
+      .get("https://reqres.in/api/users?page=2")
       .then((res) => {
-        setQuote(res.data.content);
+        setData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, []);
+
   return (
     <div>
-      <div>
-        <button onClick={getQuote}> click to get a Quote </button>
-        <h1>{quote}</h1>
-      </div>
+      <h1>halo</h1>
+      {data.map((d)=>{
+        return <p>
+          {d.email}
+        </p>
+      })}
     </div>
   );
 }

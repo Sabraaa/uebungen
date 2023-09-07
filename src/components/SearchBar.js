@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SearchBar = (event) => { 
-  const onChangeHandler =(event)=>{
-console.log(event.target.value)
-  }
-  // console.log(event.prototype);
+const SearchBar = (event) => {
+  const [change, setChange] = useState("sag");
+  // setChange();
+  console.log(event.target);
+
   return (
     <div>
       <form>
         <div>
           <label> Image search </label>
-          <input type="text" onChange={onChangeHandler}></input>
+          <input type="text" onChange={setChange}></input>
         </div>
       </form>
     </div>

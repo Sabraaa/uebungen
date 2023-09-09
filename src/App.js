@@ -1,33 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [theme, setTheme] = useState("blue");
+  const [res, setRes] = useState("");
+  const [items, setItems] = useState([])
 
-  const decCount = () => {
-    setCount((prevCount) => prevCount - 1);
-    setTheme("red");
-  };
-  const incCount = () => {
-    setCount((prevCount) => prevCount + 1);
-    setTheme("green");
-    // setCount(count + 1);
-  };
+  useEffect(()=>{
+    fetch(`https://jsonplaceholder.typicode.com/${res}`)
+    .then(response=> response.json())
+}, [res])
+
+
+
   return (
-    <div style={{ margin: "20px" }}>
-      <button style={{ height: "50px", width: "40px" }} onClick={decCount}>
-        -
-      </button>
-      <span style={{ height: "50px", width: "40px", margin: "20px" }}>
-        {count}
-      </span>
-      <span style={{ height: "50px", width: "40px", margin: "20px" }}>
-        {theme}
-      </span>
-      <button style={{ height: "50px", width: "40px" }} onClick={incCount}>
-        +
-      </button>
+    <div>
+      <div style={{ margin: "20px" }}>
+        <button style={{height:"50px", width:"100px", margin:"10px"}}  onClick={() => setRes("posts")}>Posts</button>
+        <button style={{height:"50px", width:"100px", margin:"10px"}} onClick={() => setRes("users")}>Users</button>
+        <button style={{height:"50px", width:"100px", margin:"10px"}} onClick={() => setRes("comments")}>Comments</button>
+      </div>
+      <h1 style={{margin:"50px"}}>  {res} </h1>
+
     </div>
   );
 }

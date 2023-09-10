@@ -1,30 +1,22 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { React, useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
+// import ClassContextComponent from "./ClassContextComponent";
+import FunctionContextComponent from "./FunctionContextComponent";
 
+export const ThemeContext = React.createContext();
 function App() {
-  const [name, setname] = useState("");
-  // const inputRef = useRef("");
-  const prevName = useRef("");
+  const [darkTheme, setdarktheme] = useState(true);
 
-  useEffect(() => {
-    prevName.current = name
-  }, [name]);
-
-
-  // const focus = () => {
-    // inputRef.current.focus();
-    // inputRef.current.value = "type here"
-  // };
-
+  const toggleTheme = () => {
+    setdarktheme((prevdarkTheme) => !prevdarkTheme);
+  };
   return (
     <div>
-      <input
-        // ref={inputRef}
-        value={name}
-        onChange={(e) => setname(e.target.value)}
-      />
-      <span>My Name Is {name} and it used to be {prevName.current}</span>
-      {/* <button onClick={focus}>click to focus</button> */}
+      <ThemeContext.Provider value={darkTheme}>
+        <button onClick={toggleTheme}>Toggle Theme</button>
+        {/* <ClassContextComponent /> */}
+        <FunctionContextComponent />
+      </ThemeContext.Provider>
     </div>
   );
 }

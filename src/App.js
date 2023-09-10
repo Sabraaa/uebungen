@@ -2,20 +2,23 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [name, setname] = useState('');
-  const [renderCount] = useRef(0)
+  const [name, setname] = useState("");
+  const inputRef = useRef();
 
+  const focus = () => {
 
-  useEffect(()=>{
-      renderCount.current = renderCount.current + 1 
+    inputRef.current.focus()
+  };
 
-  })
-console.log(renderCount)
   return (
     <div>
-      <input value={name} onChange={(e) => setname(e.target.value)} />
+      <input
+        ref={inputRef}
+        value={name}
+        onChange={(e) => setname(e.target.value)}
+      />
       <span>My Name Is {name}</span>
-      <span> I rendered {renderCount.current} times </span>
+      <button onClick={focus}>click to focus</button>
     </div>
   );
 }

@@ -1,11 +1,14 @@
-import React, { useState,useReducer } from "react";
-
+import React, { useReducer } from "react";
+const ACTIONS={
+  INC:"increment",
+  DEC:"decrement"
+}
 const FakeApp = () => {
   const reducer =(state, action)=>{
     switch (action.type) {
-      case "dec":
+      case ACTIONS.INC:
         return {count:state.count-1}
-      case "inc":
+      case ACTIONS.DEC:
         return {count:state.count+1}
     
       default:
@@ -16,11 +19,11 @@ const FakeApp = () => {
   const [state, dispatch] = useReducer(reducer, {count:0})
 
   const decCount = () => {
-    dispatch({type:"dec"});
+    dispatch({type:ACTIONS.INC});
 
   };
   const incCount = () => {
-    dispatch({type:"inc"});
+    dispatch({type:ACTIONS.DEC});
   };
   return (
     <div>

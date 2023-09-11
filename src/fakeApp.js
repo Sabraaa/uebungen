@@ -1,29 +1,15 @@
-import React, { useCallback, useState } from "react";
-import List from "./List";
+import React, { useState } from "react";
+import useLocalstorage from "./hooks/useLocalStorage";
 
 const FakeApp = () => {
-  const [number, setNUmber] = useState(0);
-  const [dark, setDark] = useState(false);
-
-
-  const getItems = useCallback(() => {
-    return [number, number + 1, number + 2];
-  },[number])
-  const theme = {
-    backgroundColor: dark ? "#333" : "#FFF",
-    color: dark ? "#FFF" : "#333",
-  };
+  const [name, setName] = useLocalstorage('name', "");
   return (
-    <div style={theme}>
+    <div>
       <input
-        type="number"
-        value={number}
-        onChange={(e) => setNUmber(parseInt(e.target.value))}
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
-      <button onClick={() => setDark((prevDark) => !prevDark)}>
-        TOGGLE THEME
-      </button>
-      <List getItems={getItems}/>
     </div>
   );
 };

@@ -1,22 +1,17 @@
-import { React, useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
-// import ClassContextComponent from "./ClassContextComponent";
 import FunctionContextComponent from "./FunctionContextComponent";
+import Button from "./Button";
+import SabraContext from "./useContext";
 
-export const ThemeContext = React.createContext();
+
+
 function App() {
-  const [darkTheme, setdarktheme] = useState(true);
-
-  const toggleTheme = () => {
-    setdarktheme((prevdarkTheme) => !prevdarkTheme);
-  };
   return (
     <div>
-      <ThemeContext.Provider value={darkTheme}>
-        <button onClick={toggleTheme}>Toggle Theme</button>
-        {/* <ClassContextComponent /> */}
+      <SabraContext>
+        <Button/>
         <FunctionContextComponent />
-      </ThemeContext.Provider>
+      </SabraContext>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 
-export const Sabra = createContext();
+export const SabraContext = createContext();
 
-const SabraContext = ({ children }) => {
+const SabraProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(true);
 
   const changeMode = () => {
@@ -18,4 +18,4 @@ const SabraContext = ({ children }) => {
   );
 };
 
-export default SabraContext;
+export default SabraProvider;

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Sabra } from "./useContext";
+import { SabraContext } from "../hooks/useContext";
 
 const Button = () => {
-  const { changeMode } = useContext(Sabra);
+  const { changeMode } = useContext(SabraContext);
 
   return (
     <div>

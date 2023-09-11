@@ -1,8 +1,8 @@
 import { React, useContext } from "react";
-import { Sabra } from "./useContext";
+import { SabraContext } from "../hooks/useContext";
 
 const FunctionContextComponent = () => {
-  const { darkMode } = useContext(Sabra);
+  const { darkMode } = useContext(SabraContext);
 
   const themeStyles = {
     backgroundColor: darkMode ? "#333" : "#ccc",

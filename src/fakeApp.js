@@ -1,17 +1,44 @@
-import React, { useState } from "react";
-import useLocalstorage from "./hooks/useLocalStorage";
+import React from "react";
+import { createStore } from "redux";
+
+// STORE
+// let store = createStore()
+
+//ACTION
+const increment = () => {
+  return {
+    type: "INC",
+  };
+};
+const decrement = () => {
+  return {
+    type: "DEC",
+  };
+};
+//  REDUCER
+const counter = (state = 0, action) => {
+  switch (action.type) {
+    case "INC":
+      return state + 1;
+    case "DEC":
+      return state - 1;
+
+    default:
+      break;
+  }
+};
+
+let store = createStore(counter);
+
+// clg
+store.subscribe(() => console.log(store.getState()));
+
+// DISPATCH
+store.dispatch(increment());
+store.dispatch(decrement());
 
 const FakeApp = () => {
-  const [name, setName] = useLocalstorage('name', "");
-  return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-    </div>
-  );
+  return <div>hi</div>;
 };
 
 export default FakeApp;

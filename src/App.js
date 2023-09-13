@@ -1,19 +1,20 @@
-import { createStore } from "redux";
+import { useDispatch } from "react-redux";
 import "./App.css";
 import FakeApp from "./fakeApp";
-import { Provider } from "react-redux";
-import allReducers from "./reducers";
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { decrement, increment, incrementByAmount } from "./redux/counter";
 
 function App() {
+  const { count } = useSelector((state) => state.counterRed);
+  const dispatch = useDispatch();
+
   return (
     <div>
-      <Provider store={store}>
-        <FakeApp />
-      </Provider>
+      <FakeApp />
+      <h1> the count is : {count}</h1>
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
+      <button onClick={() => dispatch(incrementByAmount(15))}> +15</button>
     </div>
   );
 }
